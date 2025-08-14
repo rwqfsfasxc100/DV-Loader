@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://CloseWindow.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://PresetMenu.gd" type="Script" id=7]
 [ext_resource path="res://FileDialog.gd" type="Script" id=8]
 [ext_resource path="res://LAUNCH.gd" type="Script" id=9]
+[ext_resource path="res://LaunchParameters.gd" type="Script" id=10]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -81,33 +82,44 @@ margin_bottom = 1280.0
 rect_min_size = Vector2( 600, 1230 )
 alignment = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="BottomContainer"]
-margin_top = 1030.0
+[node name="LaunchParameters" type="HBoxContainer" parent="BottomContainer"]
+margin_top = 980.0
 margin_right = 600.0
 margin_bottom = 1130.0
 rect_min_size = Vector2( 600, 100 )
+script = ExtResource( 10 )
 
-[node name="Panel" type="Panel" parent="BottomContainer/HBoxContainer2"]
+[node name="Panel" type="Panel" parent="BottomContainer/LaunchParameters"]
 margin_right = 600.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 600, 50 )
+margin_bottom = 150.0
+rect_min_size = Vector2( 600, 150 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomContainer/HBoxContainer2/Panel"]
+[node name="Label" type="Label" parent="BottomContainer/LaunchParameters/Panel"]
 margin_right = 40.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 600, 100 )
+rect_min_size = Vector2( 330, 0 )
+text = "Launch Parameters"
+align = 1
+valign = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomContainer/LaunchParameters/Panel"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 600, 150 )
+alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer"]
+margin_top = 46.0
 margin_right = 600.0
-margin_bottom = 50.0
+margin_bottom = 96.0
 rect_min_size = Vector2( 600, 50 )
 
-[node name="EnableMods" type="CheckBox" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer2"]
+[node name="EnableMods" type="CheckBox" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer2"]
 margin_right = 206.0
 margin_bottom = 50.0
 text = "--enable-mods"
 
-[node name="Label" type="Label" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer2"]
 margin_left = 210.0
 margin_top = 5.0
 margin_right = 259.0
@@ -115,34 +127,34 @@ margin_bottom = 45.0
 rect_min_size = Vector2( 49, 0 )
 text = "    "
 
-[node name="DebugConsole" type="CheckBox" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer2"]
+[node name="DebugConsole" type="CheckBox" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer2"]
 margin_left = 263.0
 margin_right = 490.0
 margin_bottom = 50.0
 text = "--debug-console"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer"]
-margin_top = 54.0
+[node name="HBoxContainer3" type="HBoxContainer" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer"]
+margin_top = 100.0
 margin_right = 600.0
-margin_bottom = 104.0
+margin_bottom = 150.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer3"]
 margin_right = 551.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 550, 50 )
 
-[node name="AccumulateInput" type="CheckBox" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
+[node name="AccumulateInput" type="CheckBox" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
 margin_right = 259.0
 margin_bottom = 50.0
 text = "--accumulate-input"
 
-[node name="Screensaver" type="CheckBox" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
+[node name="Screensaver" type="CheckBox" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
 margin_left = 263.0
 margin_right = 457.0
 margin_bottom = 50.0
 text = "--screensaver"
 
-[node name="SpinBox" type="SpinBox" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
+[node name="SpinBox" type="SpinBox" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
 margin_left = 461.0
 margin_right = 551.0
 margin_bottom = 50.0
@@ -154,17 +166,19 @@ align = 1
 prefix = "wait"
 suffix = "s"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="BottomContainer/HBoxContainer2/Panel"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="BottomContainer/LaunchParameters/Panel"]
 margin_left = 555.0
 margin_right = 600.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 45, 100 )
+margin_bottom = 150.0
+rect_min_size = Vector2( 45, 150 )
 alignment = 2
 
-[node name="Button" type="Button" parent="BottomContainer/HBoxContainer2/Panel/HBoxContainer2"]
-margin_left = 11.0
+[node name="Button" type="Button" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer2"]
+margin_top = 50.0
 margin_right = 45.0
-margin_bottom = 100.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 100 )
+disabled = true
 text = "V"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer"]

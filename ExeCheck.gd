@@ -2,6 +2,8 @@ extends Button
 
 var OK_TO_LAUNCH := false
 
+var EXECUTABLE_PATH := ""
+
 onready var ico = $TextureRect
 
 var fail_icon = "res://icons/ic_fluent_error_circle_48_regular.stex"
@@ -78,6 +80,7 @@ func _text_changed(new_text):
 			pack = folder + pck
 			if dir.file_exists(executable):
 				error +=1
+				EXECUTABLE_PATH = executable
 			if dir.file_exists(pack):
 				error +=1
 			

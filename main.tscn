@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://CloseWindow.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://FileDialog.gd" type="Script" id=8]
 [ext_resource path="res://LAUNCH.gd" type="Script" id=9]
 [ext_resource path="res://LaunchParameters.gd" type="Script" id=10]
+[ext_resource path="res://font_medium.tres" type="DynamicFont" id=11]
+[ext_resource path="res://RootVariables.gd" type="Script" id=12]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -35,10 +37,14 @@ load_path = "res://icons/itch.stex"
 flags = 4
 load_path = "res://icons/epic.stex"
 
-[node name="Control" type="Control"]
+[sub_resource type="Theme" id=7]
+Label/fonts/font = ExtResource( 11 )
+
+[node name="RootVariables" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+script = ExtResource( 12 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 600.0
@@ -69,32 +75,36 @@ text = "DV Loader"
 align = 1
 valign = 1
 
-[node name="TopContainer" type="VBoxContainer" parent="."]
-margin_top = 50.0
-margin_right = 600.0
-margin_bottom = 1280.0
-rect_min_size = Vector2( 600, 1230 )
-
-[node name="BottomContainer" type="VBoxContainer" parent="."]
-margin_top = 50.0
-margin_right = 600.0
-margin_bottom = 1280.0
-rect_min_size = Vector2( 600, 1230 )
+[node name="VerticalRect" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 600, 1280 )
 alignment = 2
 
-[node name="LaunchParameters" type="HBoxContainer" parent="BottomContainer"]
-margin_top = 980.0
+[node name="TopContainer" type="VBoxContainer" parent="VerticalRect"]
+margin_top = 51.0
 margin_right = 600.0
-margin_bottom = 1130.0
+margin_bottom = 1026.0
+rect_min_size = Vector2( 0, 975 )
+
+[node name="BottomContainer" type="VBoxContainer" parent="VerticalRect"]
+margin_top = 1030.0
+margin_right = 600.0
+margin_bottom = 1280.0
+alignment = 2
+
+[node name="LaunchParameters" type="HBoxContainer" parent="VerticalRect/BottomContainer"]
+margin_right = 600.0
+margin_bottom = 150.0
 rect_min_size = Vector2( 600, 100 )
 script = ExtResource( 10 )
 
-[node name="Panel" type="Panel" parent="BottomContainer/LaunchParameters"]
+[node name="Panel" type="Panel" parent="VerticalRect/BottomContainer/LaunchParameters"]
 margin_right = 600.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 600, 150 )
 
-[node name="Label" type="Label" parent="BottomContainer/LaunchParameters/Panel"]
+[node name="Label" type="Label" parent="VerticalRect/BottomContainer/LaunchParameters/Panel"]
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 330, 0 )
@@ -102,24 +112,24 @@ text = "Launch Parameters"
 align = 1
 valign = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomContainer/LaunchParameters/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VerticalRect/BottomContainer/LaunchParameters/Panel"]
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 600, 150 )
 alignment = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VerticalRect/BottomContainer/LaunchParameters/Panel/VBoxContainer"]
 margin_top = 46.0
 margin_right = 600.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 600, 50 )
 
-[node name="EnableMods" type="CheckBox" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer2"]
+[node name="EnableMods" type="CheckBox" parent="VerticalRect/BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer2"]
 margin_right = 206.0
 margin_bottom = 50.0
 text = "--enable-mods"
 
-[node name="Label" type="Label" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="VerticalRect/BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer2"]
 margin_left = 210.0
 margin_top = 5.0
 margin_right = 259.0
@@ -127,34 +137,34 @@ margin_bottom = 45.0
 rect_min_size = Vector2( 49, 0 )
 text = "    "
 
-[node name="DebugConsole" type="CheckBox" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer2"]
+[node name="DebugConsole" type="CheckBox" parent="VerticalRect/BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer2"]
 margin_left = 263.0
 margin_right = 490.0
 margin_bottom = 50.0
 text = "--debug-console"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VerticalRect/BottomContainer/LaunchParameters/Panel/VBoxContainer"]
 margin_top = 100.0
 margin_right = 600.0
 margin_bottom = 150.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VerticalRect/BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer3"]
 margin_right = 551.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 550, 50 )
 
-[node name="AccumulateInput" type="CheckBox" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
+[node name="AccumulateInput" type="CheckBox" parent="VerticalRect/BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
 margin_right = 259.0
 margin_bottom = 50.0
 text = "--accumulate-input"
 
-[node name="Screensaver" type="CheckBox" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
+[node name="Screensaver" type="CheckBox" parent="VerticalRect/BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
 margin_left = 263.0
 margin_right = 457.0
 margin_bottom = 50.0
 text = "--screensaver"
 
-[node name="SpinBox" type="SpinBox" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
+[node name="SpinBox" type="SpinBox" parent="VerticalRect/BottomContainer/LaunchParameters/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
 margin_left = 461.0
 margin_right = 551.0
 margin_bottom = 50.0
@@ -166,14 +176,14 @@ align = 1
 prefix = "wait"
 suffix = "s"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="BottomContainer/LaunchParameters/Panel"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VerticalRect/BottomContainer/LaunchParameters/Panel"]
 margin_left = 555.0
 margin_right = 600.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 45, 150 )
 alignment = 2
 
-[node name="Button" type="Button" parent="BottomContainer/LaunchParameters/Panel/VBoxContainer2"]
+[node name="Button" type="Button" parent="VerticalRect/BottomContainer/LaunchParameters/Panel/VBoxContainer2"]
 margin_top = 50.0
 margin_right = 45.0
 margin_bottom = 150.0
@@ -181,25 +191,25 @@ rect_min_size = Vector2( 0, 100 )
 disabled = true
 text = "V"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer"]
-margin_top = 1134.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VerticalRect/BottomContainer"]
+margin_top = 154.0
 margin_right = 600.0
-margin_bottom = 1180.0
+margin_bottom = 200.0
 
-[node name="LineEdit" type="LineEdit" parent="BottomContainer/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="VerticalRect/BottomContainer/HBoxContainer"]
 margin_right = 492.0
 margin_bottom = 46.0
 rect_min_size = Vector2( 492, 40 )
 placeholder_text = "Enter file path (e.g. C:\\\\path\\to\\file.exe ; /path/to/file.x86_64)"
 
-[node name="ExeCheck" type="Button" parent="BottomContainer/HBoxContainer"]
+[node name="ExeCheck" type="Button" parent="VerticalRect/BottomContainer/HBoxContainer"]
 margin_left = 496.0
 margin_right = 546.0
 margin_bottom = 46.0
 rect_min_size = Vector2( 50, 40 )
 script = ExtResource( 5 )
 
-[node name="TextureRect" type="TextureRect" parent="BottomContainer/HBoxContainer/ExeCheck"]
+[node name="TextureRect" type="TextureRect" parent="VerticalRect/BottomContainer/HBoxContainer/ExeCheck"]
 modulate = Color( 8, 0, 0, 1 )
 margin_right = 40.0
 margin_bottom = 40.0
@@ -209,13 +219,13 @@ texture = SubResource( 1 )
 expand = true
 stretch_mode = 4
 
-[node name="OpenFileManager" type="Button" parent="BottomContainer/HBoxContainer"]
+[node name="OpenFileManager" type="Button" parent="VerticalRect/BottomContainer/HBoxContainer"]
 margin_left = 550.0
 margin_right = 600.0
 margin_bottom = 46.0
 rect_min_size = Vector2( 50, 40 )
 
-[node name="TextureRect" type="TextureRect" parent="BottomContainer/HBoxContainer/OpenFileManager"]
+[node name="TextureRect" type="TextureRect" parent="VerticalRect/BottomContainer/HBoxContainer/OpenFileManager"]
 modulate = Color( 8, 8, 8, 1 )
 margin_right = 40.0
 margin_bottom = 40.0
@@ -224,12 +234,15 @@ texture = SubResource( 2 )
 expand = true
 stretch_mode = 4
 
-[node name="LAUNCH" type="Button" parent="BottomContainer"]
-margin_top = 1184.0
+[node name="LAUNCH" type="Button" parent="VerticalRect/BottomContainer"]
+margin_top = 204.0
 margin_right = 600.0
-margin_bottom = 1230.0
+margin_bottom = 250.0
 text = "Launch ΔV: Rings of Saturn"
 script = ExtResource( 9 )
+
+[node name="Timer" type="Timer" parent="VerticalRect/BottomContainer/LAUNCH"]
+one_shot = true
 
 [node name="Minimize" type="Button" parent="."]
 margin_left = 500.0
@@ -325,7 +338,7 @@ margin_right = 600.0
 margin_bottom = 800.0
 rect_min_size = Vector2( 700, 500 )
 popup_exclusive = true
-window_title = "Open executable or PCK"
+window_title = "Open a File"
 resizable = true
 dialog_hide_on_ok = true
 mode = 0
@@ -345,7 +358,7 @@ script = ExtResource( 7 )
 [node name="Panel" type="Panel" parent="PresetMenu"]
 margin_right = 40.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 600, 450 )
+rect_min_size = Vector2( 600, 550 )
 mouse_filter = 2
 
 [node name="VendorBox" type="VBoxContainer" parent="PresetMenu/Panel"]
@@ -362,8 +375,8 @@ rect_min_size = Vector2( 600, 50 )
 mouse_filter = 2
 alignment = 2
 
-[node name="Button" type="Button" parent="PresetMenu/Panel/VendorBox/HBoxContainer4"]
-margin_left = 550.0
+[node name="Close" type="Button" parent="PresetMenu/Panel/VendorBox/HBoxContainer4"]
+margin_left = 566.0
 margin_right = 600.0
 margin_bottom = 50.0
 text = "X"
@@ -380,7 +393,6 @@ margin_left = 132.0
 margin_right = 252.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 120, 120 )
-disabled = true
 icon = SubResource( 3 )
 expand_icon = true
 
@@ -446,13 +458,27 @@ margin_bottom = 426.0
 rect_min_size = Vector2( 0, 60 )
 mouse_filter = 2
 
+[node name="Label" type="Label" parent="PresetMenu/Panel/VendorBox"]
+margin_top = 430.0
+margin_right = 600.0
+margin_bottom = 529.0
+theme = SubResource( 7 )
+text = "Note: These links are a common location for your OS. They may not represent where the game is actually installed to"
+autowrap = true
+
 [connection signal="button_down" from="TopPanel" to="TopPanel" method="_button_down"]
 [connection signal="button_up" from="TopPanel" to="TopPanel" method="_button_up"]
-[connection signal="text_changed" from="BottomContainer/HBoxContainer/LineEdit" to="BottomContainer/HBoxContainer/ExeCheck" method="_text_changed"]
-[connection signal="pressed" from="BottomContainer/HBoxContainer/OpenFileManager" to="FileSelectOptions" method="_pressed"]
+[connection signal="text_changed" from="VerticalRect/BottomContainer/HBoxContainer/LineEdit" to="VerticalRect/BottomContainer/HBoxContainer/ExeCheck" method="_text_changed"]
+[connection signal="pressed" from="VerticalRect/BottomContainer/HBoxContainer/OpenFileManager" to="FileSelectOptions" method="_pressed"]
+[connection signal="pressed" from="VerticalRect/BottomContainer/LAUNCH" to="VerticalRect/BottomContainer/LAUNCH" method="_pressed"]
+[connection signal="timeout" from="VerticalRect/BottomContainer/LAUNCH/Timer" to="VerticalRect/BottomContainer/LAUNCH" method="_timeout"]
 [connection signal="pressed" from="Minimize" to="Minimize" method="_on_Minimize_pressed"]
 [connection signal="pressed" from="Close" to="Close" method="_on_Button_pressed"]
 [connection signal="pressed" from="FileSelectOptions/VBoxContainer/VBoxContainer2/HBoxContainer/Presets" to="FileSelectOptions" method="_on_Presets_pressed"]
 [connection signal="pressed" from="FileSelectOptions/VBoxContainer/VBoxContainer2/HBoxContainer/FilePicker" to="FileSelectOptions" method="_on_FilePicker_pressed"]
 [connection signal="file_selected" from="FileDialog" to="FileDialog" method="_on_FileDialog_file_selected"]
-[connection signal="pressed" from="PresetMenu/Panel/VendorBox/HBoxContainer4/Button" to="PresetMenu" method="_on_Cancel_pressed"]
+[connection signal="pressed" from="PresetMenu/Panel/VendorBox/HBoxContainer4/Close" to="PresetMenu" method="_on_Cancel_pressed"]
+[connection signal="pressed" from="PresetMenu/Panel/VendorBox/HBoxContainer/Steam" to="PresetMenu" method="_on_Steam_pressed"]
+[connection signal="pressed" from="PresetMenu/Panel/VendorBox/HBoxContainer/Gog" to="PresetMenu" method="_on_Gog_pressed"]
+[connection signal="pressed" from="PresetMenu/Panel/VendorBox/HBoxContainer2/Itch" to="PresetMenu" method="_on_Itch_pressed"]
+[connection signal="pressed" from="PresetMenu/Panel/VendorBox/HBoxContainer2/Epic" to="PresetMenu" method="_on_Epic_pressed"]

@@ -1,8 +1,9 @@
 extends HBoxContainer
 
 
-var params : Dictionary = {}
+var total_params = ""
 
+var wait_timer = 0
 
 onready var ENBLMDS = $Panel/VBoxContainer/HBoxContainer2/EnableMods
 onready var DBGCSL = $Panel/VBoxContainer/HBoxContainer2/DebugConsole
@@ -20,7 +21,16 @@ func _process(delta):
 		SCRNTMR.editable = true
 	else:
 		SCRNTMR.editable = false
-	
-	
-	
-	pass
+	var params = PoolStringArray([])
+	if enable_mods:
+		params.append("--enable-mods")
+	if debug_console:
+		params.append("--debug-console")
+	if accumulate_input:
+		params.append("--accumulate_input")
+	if screensaver:
+		params.append("--screensaver")
+		wait_timer = screensaver_wait
+	else:
+		wait_timer = 0
+	total_params = params

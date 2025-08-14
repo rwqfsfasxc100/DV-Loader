@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://CloseWindow.gd" type="Script" id=2]
@@ -15,6 +15,22 @@ load_path = "res://icons/ic_fluent_error_circle_48_filled.stex"
 [sub_resource type="StreamTexture" id=2]
 flags = 4
 load_path = "res://icons/ic_fluent_open_folder_48_filled.stex"
+
+[sub_resource type="StreamTexture" id=3]
+flags = 4
+load_path = "res://icons/steam.stex"
+
+[sub_resource type="StreamTexture" id=4]
+flags = 4
+load_path = "res://icons/gog.stex"
+
+[sub_resource type="StreamTexture" id=5]
+flags = 4
+load_path = "res://icons/itch.stex"
+
+[sub_resource type="StreamTexture" id=6]
+flags = 4
+load_path = "res://icons/epic.stex"
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -216,45 +232,106 @@ script = ExtResource( 7 )
 [node name="Panel" type="Panel" parent="PresetMenu"]
 margin_right = 40.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 600, 300 )
+rect_min_size = Vector2( 600, 450 )
+mouse_filter = 2
 
 [node name="VendorBox" type="VBoxContainer" parent="PresetMenu/Panel"]
 margin_right = 40.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 600, 230 )
+rect_min_size = Vector2( 600, 400 )
+mouse_filter = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PresetMenu/Panel/VendorBox"]
-margin_top = 113.0
+[node name="HBoxContainer4" type="HBoxContainer" parent="PresetMenu/Panel/VendorBox"]
 margin_right = 600.0
-margin_bottom = 113.0
-alignment = 1
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="PresetMenu/Panel/VendorBox"]
-margin_top = 117.0
-margin_right = 600.0
-margin_bottom = 117.0
-alignment = 1
-
-[node name="CancelContainer" type="VBoxContainer" parent="PresetMenu/Panel"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 600, 300 )
+margin_bottom = 50.0
+rect_min_size = Vector2( 600, 50 )
+mouse_filter = 2
 alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PresetMenu/Panel/CancelContainer"]
-margin_top = 250.0
+[node name="Button" type="Button" parent="PresetMenu/Panel/VendorBox/HBoxContainer4"]
+margin_left = 550.0
 margin_right = 600.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 600, 50 )
+margin_bottom = 50.0
+text = "X"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PresetMenu/Panel/VendorBox"]
+margin_top = 54.0
+margin_right = 600.0
+margin_bottom = 174.0
+mouse_filter = 2
 alignment = 1
 
-[node name="Cancel" type="Button" parent="PresetMenu/Panel/CancelContainer/HBoxContainer"]
-margin_left = 225.0
-margin_right = 375.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 150, 50 )
-text = "Cancel"
+[node name="Steam" type="Button" parent="PresetMenu/Panel/VendorBox/HBoxContainer"]
+margin_left = 132.0
+margin_right = 252.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 120, 120 )
+disabled = true
+icon = SubResource( 3 )
+expand_icon = true
+
+[node name="Label" type="Label" parent="PresetMenu/Panel/VendorBox/HBoxContainer"]
+margin_left = 256.0
+margin_top = 40.0
+margin_right = 344.0
+margin_bottom = 80.0
+text = "        "
+
+[node name="Gog" type="Button" parent="PresetMenu/Panel/VendorBox/HBoxContainer"]
+margin_left = 348.0
+margin_right = 468.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 120, 120 )
+disabled = true
+icon = SubResource( 4 )
+expand_icon = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PresetMenu/Panel/VendorBox"]
+margin_top = 178.0
+margin_right = 600.0
+margin_bottom = 238.0
+rect_min_size = Vector2( 0, 60 )
+mouse_filter = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PresetMenu/Panel/VendorBox"]
+margin_top = 242.0
+margin_right = 600.0
+margin_bottom = 362.0
+mouse_filter = 2
+alignment = 1
+
+[node name="Itch" type="Button" parent="PresetMenu/Panel/VendorBox/HBoxContainer2"]
+margin_left = 132.0
+margin_right = 252.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 120, 120 )
+disabled = true
+icon = SubResource( 5 )
+expand_icon = true
+
+[node name="Label" type="Label" parent="PresetMenu/Panel/VendorBox/HBoxContainer2"]
+margin_left = 256.0
+margin_top = 40.0
+margin_right = 344.0
+margin_bottom = 80.0
+text = "        "
+
+[node name="Epic" type="Button" parent="PresetMenu/Panel/VendorBox/HBoxContainer2"]
+margin_left = 348.0
+margin_right = 468.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 120, 120 )
+disabled = true
+icon = SubResource( 6 )
+expand_icon = true
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="PresetMenu/Panel/VendorBox"]
+margin_top = 366.0
+margin_right = 600.0
+margin_bottom = 426.0
+rect_min_size = Vector2( 0, 60 )
+mouse_filter = 2
 
 [connection signal="button_down" from="TopPanel" to="TopPanel" method="_button_down"]
 [connection signal="button_up" from="TopPanel" to="TopPanel" method="_button_up"]
@@ -264,4 +341,4 @@ text = "Cancel"
 [connection signal="pressed" from="Close" to="Close" method="_on_Button_pressed"]
 [connection signal="pressed" from="FileSelectOptions/VBoxContainer/VBoxContainer2/HBoxContainer/Presets" to="FileSelectOptions" method="_on_Presets_pressed"]
 [connection signal="pressed" from="FileSelectOptions/VBoxContainer/VBoxContainer2/HBoxContainer/FilePicker" to="FileSelectOptions" method="_on_FilePicker_pressed"]
-[connection signal="pressed" from="PresetMenu/Panel/CancelContainer/HBoxContainer/Cancel" to="PresetMenu" method="_on_Cancel_pressed"]
+[connection signal="pressed" from="PresetMenu/Panel/VendorBox/HBoxContainer4/Button" to="PresetMenu" method="_on_Cancel_pressed"]

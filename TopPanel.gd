@@ -13,9 +13,7 @@ func _process(delta):
 	if clicking:
 		window_pos = window_pos + relative
 		OS.window_position = window_pos
-		
-		pass
-	get_parent().get_node("VBoxContainer2/pos").text = "Clicking: " + str(clicking) + " Combined: " + str(window_pos + relative) + " Base: " + str(window_pos) + " Relative: " + str(relative)
+#	get_parent().get_node("VBoxContainer2/pos").text = "Clicking: " + str(clicking) + " Combined: " + str(window_pos + relative) + " Base: " + str(window_pos) + " Relative: " + str(relative)
 	
 
 

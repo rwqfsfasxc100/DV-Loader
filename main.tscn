@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://CloseWindow.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://ExeCheck.gd" type="Script" id=5]
 [ext_resource path="res://FileSelectOptions.gd" type="Script" id=6]
 [ext_resource path="res://PresetMenu.gd" type="Script" id=7]
+[ext_resource path="res://FileDialog.gd" type="Script" id=8]
+[ext_resource path="res://LAUNCH.gd" type="Script" id=9]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -79,10 +81,96 @@ margin_bottom = 1280.0
 rect_min_size = Vector2( 600, 1230 )
 alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer"]
-margin_top = 1184.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="BottomContainer"]
+margin_top = 1030.0
 margin_right = 600.0
-margin_bottom = 1230.0
+margin_bottom = 1130.0
+rect_min_size = Vector2( 600, 100 )
+
+[node name="Panel" type="Panel" parent="BottomContainer/HBoxContainer2"]
+margin_right = 600.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 600, 50 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomContainer/HBoxContainer2/Panel"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 600, 100 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 600, 50 )
+
+[node name="EnableMods" type="CheckBox" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer2"]
+margin_right = 206.0
+margin_bottom = 50.0
+text = "--enable-mods"
+
+[node name="Label" type="Label" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 210.0
+margin_top = 5.0
+margin_right = 259.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 49, 0 )
+text = "    "
+
+[node name="DebugConsole" type="CheckBox" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 263.0
+margin_right = 490.0
+margin_bottom = 50.0
+text = "--debug-console"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer"]
+margin_top = 54.0
+margin_right = 600.0
+margin_bottom = 104.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer3"]
+margin_right = 551.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 550, 50 )
+
+[node name="AccumulateInput" type="CheckBox" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
+margin_right = 259.0
+margin_bottom = 50.0
+text = "--accumulate-input"
+
+[node name="Screensaver" type="CheckBox" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
+margin_left = 263.0
+margin_right = 457.0
+margin_bottom = 50.0
+text = "--screensaver"
+
+[node name="SpinBox" type="SpinBox" parent="BottomContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer3/HBoxContainer"]
+margin_left = 461.0
+margin_right = 551.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 90, 50 )
+min_value = 1.0
+max_value = 10.0
+value = 3.0
+align = 1
+prefix = "wait"
+suffix = "s"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BottomContainer/HBoxContainer2/Panel"]
+margin_left = 555.0
+margin_right = 600.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 45, 100 )
+alignment = 2
+
+[node name="Button" type="Button" parent="BottomContainer/HBoxContainer2/Panel/HBoxContainer2"]
+margin_left = 11.0
+margin_right = 45.0
+margin_bottom = 100.0
+text = "V"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer"]
+margin_top = 1134.0
+margin_right = 600.0
+margin_bottom = 1180.0
 
 [node name="LineEdit" type="LineEdit" parent="BottomContainer/HBoxContainer"]
 margin_right = 492.0
@@ -121,6 +209,13 @@ rect_min_size = Vector2( 50, 46 )
 texture = SubResource( 2 )
 expand = true
 stretch_mode = 4
+
+[node name="LAUNCH" type="Button" parent="BottomContainer"]
+margin_top = 1184.0
+margin_right = 600.0
+margin_bottom = 1230.0
+text = "Launch ΔV: Rings of Saturn"
+script = ExtResource( 9 )
 
 [node name="Minimize" type="Button" parent="."]
 margin_left = 500.0
@@ -212,16 +307,20 @@ text = "File Picker"
 [node name="FileDialog" type="FileDialog" parent="."]
 margin_left = -100.0
 margin_top = 300.0
-margin_right = 700.0
+margin_right = 600.0
 margin_bottom = 800.0
-rect_min_size = Vector2( 800, 500 )
+rect_min_size = Vector2( 700, 500 )
 popup_exclusive = true
-window_title = "Open a File"
+window_title = "Open executable or PCK"
+resizable = true
+dialog_hide_on_ok = true
 mode = 0
 access = 2
+filters = PoolStringArray( "*.exe", "*.x86_64", "*.pck" )
+show_hidden_files = true
+script = ExtResource( 8 )
 
 [node name="PresetMenu" type="Popup" parent="."]
-visible = true
 margin_top = 400.0
 margin_right = 600.0
 margin_bottom = 700.0
@@ -341,4 +440,5 @@ mouse_filter = 2
 [connection signal="pressed" from="Close" to="Close" method="_on_Button_pressed"]
 [connection signal="pressed" from="FileSelectOptions/VBoxContainer/VBoxContainer2/HBoxContainer/Presets" to="FileSelectOptions" method="_on_Presets_pressed"]
 [connection signal="pressed" from="FileSelectOptions/VBoxContainer/VBoxContainer2/HBoxContainer/FilePicker" to="FileSelectOptions" method="_on_FilePicker_pressed"]
+[connection signal="file_selected" from="FileDialog" to="FileDialog" method="_on_FileDialog_file_selected"]
 [connection signal="pressed" from="PresetMenu/Panel/VendorBox/HBoxContainer4/Button" to="PresetMenu" method="_on_Cancel_pressed"]

@@ -1,5 +1,7 @@
 extends Button
 
+var OK_TO_LAUNCH := false
+
 onready var ico = $TextureRect
 
 var fail_icon = "res://icons/ic_fluent_error_circle_48_regular.stex"
@@ -100,10 +102,10 @@ func _text_changed(new_text):
 		ico.modulate = fail_modulate
 		self.hint_tooltip = "OS X is not yet supported. Please contact the developer for help"
 		error = 0
-	
-	
-	
-	
-	
-	
-	
+
+func _process(delta):
+	if error == 2:
+		OK_TO_LAUNCH = true
+	else:
+		OK_TO_LAUNCH = false
+	get_parent().get_parent().get_node("LAUNCH").OK_TO_LAUNCH_FROM_EXECUTABLE = OK_TO_LAUNCH

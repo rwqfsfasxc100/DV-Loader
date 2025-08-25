@@ -112,3 +112,10 @@ func _process(delta):
 	else:
 		OK_TO_LAUNCH = false
 	get_parent().get_parent().get_node("LAUNCH").OK_TO_LAUNCH_FROM_EXECUTABLE = OK_TO_LAUNCH
+
+
+
+func _on_ExeCheck_pressed():
+	var tl = load("res://translation_file_to_dictionary.gd")
+	var tls = tl.translation_file_to_dictionary("res://en.txt")
+	breakpoint

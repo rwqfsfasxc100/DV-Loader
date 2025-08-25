@@ -261,6 +261,7 @@ text = "X"
 script = ExtResource( 2 )
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
+visible = false
 margin_top = 50.0
 margin_right = 600.0
 margin_bottom = 1280.0
@@ -469,6 +470,7 @@ autowrap = true
 [connection signal="button_down" from="TopPanel" to="TopPanel" method="_button_down"]
 [connection signal="button_up" from="TopPanel" to="TopPanel" method="_button_up"]
 [connection signal="text_changed" from="VerticalRect/BottomContainer/HBoxContainer/LineEdit" to="VerticalRect/BottomContainer/HBoxContainer/ExeCheck" method="_text_changed"]
+[connection signal="pressed" from="VerticalRect/BottomContainer/HBoxContainer/ExeCheck" to="VerticalRect/BottomContainer/HBoxContainer/ExeCheck" method="_on_ExeCheck_pressed"]
 [connection signal="pressed" from="VerticalRect/BottomContainer/HBoxContainer/OpenFileManager" to="FileSelectOptions" method="_pressed"]
 [connection signal="pressed" from="VerticalRect/BottomContainer/LAUNCH" to="VerticalRect/BottomContainer/LAUNCH" method="_pressed"]
 [connection signal="timeout" from="VerticalRect/BottomContainer/LAUNCH/Timer" to="VerticalRect/BottomContainer/LAUNCH" method="_timeout"]

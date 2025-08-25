@@ -36,5 +36,6 @@ func _timeout():
 	if vars.GAME_HAS_LAUNCHED == false:
 		vars.GAME_HAS_LAUNCHED = true
 		PROCESS_ID = OS.execute(EXECUTABLE_PATH,LAUNCH_PARAMETERS, false)
+		
 	else:
 		pass

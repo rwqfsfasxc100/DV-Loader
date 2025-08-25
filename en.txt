@@ -1,0 +1,43 @@
+locale|en
+
+SLOT_RCS_TL|Top Left RCS Mount
+
+SLOT_RCS_TR|Top Right RCS Mount
+
+SLOT_RCS_BL|Bottom Left RCS Mount
+
+SLOT_RCS_BR|Bottom Right RCS Mount
+
+SLOT_RCS_UL|Left Front RCS Mount
+
+SLOT_RCS_UR|Right Front RCS Mount
+
+SLOT_RCS_DL|Left Rear RCS Mount
+
+SLOT_RCS_DR|Right Rear RCS Mount
+
+SLOT_RCS_CL|Left Middle RCS Mount
+
+SLOT_RCS_CR|Right Middle RCS Mount
+
+SLOT_RCS_BB|Rear RCS Mount
+
+SLOT_TORCH_BL|Port Torch
+
+SLOT_TORCH_BC|Central Torch
+
+SLOT_TORCH_BR|Starboard Torch
+
+SLOT_TORCH_LR|Rear Left Torch
+
+SLOT_TORCH_LC|Left Torch
+
+SLOT_TORCH_LF|Front Left Torch
+
+SLOT_TORCH_RR|Rear Right Torch
+
+SLOT_TORCH_RC|Right Torch
+
+SLOT_TORCH_RF|Front Right Torch
+
+THRUSTERHAUL_MOD_DESCRIPTION|Overhauls the RCS and Torch thruster mounts to allow each slot to be changed and tuned individually.
